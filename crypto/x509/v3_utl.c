@@ -790,7 +790,9 @@ static int wildcard_match(const unsigned char *prefix, size_t prefix_len,
   // Check that the part matched by the wildcard contains only
   // permitted characters and only matches a single label.
   for (p = wildcard_start; p != wildcard_end; ++p) {
-    if (!OPENSSL_isalnum(*p) && *p != '-') {
+    if (!OPENSSL_isalnum(*p) && *p != '-' &&
+        !(*p == '_' &&
+          (flags & X509_CHECK_FLAG_UNDERSCORE_WILDCARDS))) {
       return 0;
     }
   }

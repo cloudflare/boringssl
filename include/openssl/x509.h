@@ -4497,6 +4497,8 @@ OPENSSL_EXPORT int X509_PURPOSE_get_id(const X509_PURPOSE *);
 #define X509_CHECK_FLAG_SINGLE_LABEL_SUBDOMAINS 0
 // Skip the subject common name fallback if subjectAltNames is missing.
 #define X509_CHECK_FLAG_NEVER_CHECK_SUBJECT 0x20
+// Allow underscores in DNS wildcard matches.
+#define X509_CHECK_FLAG_UNDERSCORE_WILDCARDS 0x40
 
 
 #if defined(__cplusplus)

@@ -4500,6 +4500,31 @@ TEST(X509Test, Names) {
           /*invalid_emails=*/{},
           /*flags=*/0,
       },
+
+      // Underscores in DNS names are forbidden by default.
+      {
+          /*cert_subject=*/{},
+          /*cert_dns_names=*/{"*.example.com"},
+          /*cert_emails=*/{},
+          /*valid_dns_names=*/{},
+          /*invalid_dns_names=*/{"not_allowed.example.com"},
+          /*valid_emails=*/{},
+          /*invalid_emails=*/{},
+          /*flags=*/0,
+      },
+
+      // Underscores in DNS names can be allowed with the right flag.
+      {
+          /*cert_subject=*/{},
+          /*cert_dns_names=*/{"*.example.com"},
+          /*cert_emails=*/{},
+          /*valid_dns_names=*/{"now_allowed.example.com"},
+          /*invalid_dns_names=*/{},
+          /*valid_emails=*/{},
+          /*invalid_emails=*/{},
+          /*flags=*/X509_CHECK_FLAG_UNDERSCORE_WILDCARDS,
+      },
+
   };
 
   size_t i = 0;
